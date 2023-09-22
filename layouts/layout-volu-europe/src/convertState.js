@@ -1,5 +1,5 @@
 import banImg from "./assets/ban_placeholder.svg";
-import topSplash from "./assets/top_splash_placeholder.svg";
+import topSplash from "./assets/c.svg";
 import jungSplash from "./assets/jung_splash_placeholder.svg";
 import midSplash from "./assets/mid_splash_placeholder.svg";
 import botSplash from "./assets/bot_splash_placeholder.svg";

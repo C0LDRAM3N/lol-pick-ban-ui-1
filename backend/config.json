@@ -4,7 +4,7 @@
     "spellsEnabled": true,
     "coachesEnabled": true,
     "blueTeam": {
-      "name": "Team Blue",
+      "name": "George Fox University",
       "score": 2,
       "coach": "Coach Blue",
       "color": "rgb(0,151,196)"
