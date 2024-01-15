@@ -6,6 +6,7 @@ import sqlite3
 from database import database
 import pandas as pd
 from CTkScrollableDropdown import *
+import subprocess
 
 class main(ctk.CTk):
     def __init__(self):
@@ -52,7 +53,7 @@ class main(ctk.CTk):
         away_label.grid(row=0, column=2)
         self.away_selection = ctk.CTkComboBox(self, width=300, values=(self.team_list))
         self.away_selection.grid(row=1, column=2)
-        CTkScrollableDropdown(self.away_selection) # Adds the scroll option to the self.away_selection ComboBox
+        CTkScrollableDropdown(self.away_selection, values=self.team_list) # Adds the scroll option to the self.away_selection ComboBox
 
         away_score_entry = ctk.CTkEntry(self, width=150)
         away_score_entry.grid(row=2, column=2)
@@ -72,7 +73,8 @@ class main(ctk.CTk):
         name_label = ctk.CTkLabel(self, text="Team Name")
         name_label.grid(row=1, column=1)
 
-        start = ctk.CTkButton(self, text="Start the UI", command=self.get_data)
+        start = ctk.CTkButton(self, text="Start the UI", command=lambda: [self.start_ui()])
+        # start.grid(row=2, column=4)
 
         reloader = ctk.CTkButton(self, text="Reload new changes", command=lambda: [database.get_colors("OSU")])
         reloader.grid(row=4, column=1)
@@ -110,7 +112,7 @@ class main(ctk.CTk):
 
         with open("backend/config.json", "w") as jsonfile:
             # Loading the updated 'data' var back into the config.json file
-            myJSON = json.dump(data, jsonfile)
+            json.dump(data, jsonfile)
             # print(myJSON)
             jsonfile.close()
 
@@ -123,6 +125,12 @@ class main(ctk.CTk):
         The datalist parameter is a list responsible for holding all of the data that will go into the config.json file
         Like RGB Values, Scores, Coach Names, etc...
         """
+        subprocess.run([r"./batch_files/program-test.bat"])
+
+
+
+    def push_data(self):
+        print("Hello World!")
 
 
 if __name__ == "__main__":

@@ -4,3 +4,4 @@
 START backend_test.bat
 timeout /t 15 /nobreak
 START start_frontend.bat
+start "" http://localhost:3000/?backend=ws://localhost:8999
