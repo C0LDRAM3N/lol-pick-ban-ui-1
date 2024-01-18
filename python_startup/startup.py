@@ -7,6 +7,7 @@ from database import database
 import pandas as pd
 from CTkScrollableDropdown import *
 import subprocess
+from pathlib import Path
 
 class main(ctk.CTk):
     def __init__(self):
@@ -74,7 +75,7 @@ class main(ctk.CTk):
         name_label.grid(row=1, column=1)
 
         start = ctk.CTkButton(self, text="Start the UI", command=lambda: [self.start_ui()])
-        # start.grid(row=2, column=4)
+        start.grid(row=5, column=1)
 
         reloader = ctk.CTkButton(self, text="Reload new changes", command=lambda: [database.get_colors("OSU")])
         reloader.grid(row=4, column=1)
@@ -111,21 +112,21 @@ class main(ctk.CTk):
         data['frontend']['redTeam']['score'] = away_score
 
         with open("backend/config.json", "w") as jsonfile:
-            # Loading the updated 'data' var back into the config.json file
+            # Loading the updated data back into the config.json file
             json.dump(data, jsonfile)
             # print(myJSON)
             jsonfile.close()
 
-    def start_ui(self, datalist):
+    def start_ui(self):
         """
-        This method will call the update_JSON method and run that all the way through
-        Next it'll call the batch file starting the program, and keep itself running silently in the background
-        At any point, you can 'reload' new data into the config.json file
-
-        The datalist parameter is a list responsible for holding all of the data that will go into the config.json file
-        Like RGB Values, Scores, Coach Names, etc...
+        Starts the UI successfully, it does open a bit too many terminal commands and tabs
+        There's probably a way to get everything more simplified
+        Close the frontend first, and then the backend
         """
-        subprocess.run([r"./batch_files/program-test.bat"])
+        
+        starting = Path.cwd()
+        file = starting/'python_startup'/'batch_files'/'program-test.bat'
+        subprocess.run([file])
 
 
 
